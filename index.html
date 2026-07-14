@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blender STL to VTT Art Tutorial</title>
+  <style>
+    :root{
+      --bg:#11151c;
+      --panel:#1a2130;
+      --panel2:#222b3c;
+      --text:#e9eef7;
+      --muted:#b8c3d9;
+      --accent:#7cc7ff;
+      --accent2:#9df0c4;
+      --border:#36435a;
+      --warn:#ffd27a;
+      --good:#9df0c4;
+      --code:#0d1117;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.55;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+    }
+    h1,h2,h3{line-height:1.2}
+    h1{
+      font-size:2.2rem;
+      margin:0 0 10px;
+    }
+    h2{
+      margin-top:36px;
+      padding-bottom:8px;
+      border-bottom:1px solid var(--border);
+      color:var(--accent);
+    }
+    h3{
+      margin-top:24px;
+      color:var(--accent2);
+    }
+    p, li{color:var(--text)}
+    .lead{
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:16px 18px;
+      margin:18px 0;
+    }
+    .panel.alt{
+      background:var(--panel2);
+    }
+    .toc ul,
+    .checklist ul{
+      margin:8px 0;
+      padding-left:20px;
+    }
+    .pill{
+      display:inline-block;
+      padding:3px 8px;
+      border-radius:999px;
+      background:#253046;
+      border:1px solid var(--border);
+      color:var(--accent2);
+      font-size:.88rem;
+      margin:2px 4px 2px 0;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0 20px;
+      background:var(--panel);
+      border:1px solid var(--border);
+    }
+    th, td{
+      border:1px solid var(--border);
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background:#20293a;
+      color:var(--accent);
+    }
+    code, pre{
+      font-family:Consolas, "Courier New", monospace;
+    }
+    code{
+      background:var(--code);
+      padding:2px 6px;
+      border-radius:6px;
+      color:#d9ecff;
+    }
+    pre{
+      background:var(--code);
+      padding:14px;
+      border-radius:10px;
+      overflow:auto;
+      border:1px solid var(--border);
+    }
+    .note{
+      border-left:4px solid var(--warn);
+      padding:10px 14px;
+      background:#2b2417;
+      color:#ffe7b2;
+      margin:14px 0;
+    }
+    .success{
+      border-left:4px solid var(--good);
+      padding:10px 14px;
+      background:#15251f;
+      color:#d7ffee;
+      margin:14px 0;
+    }
+    .small{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width:800px){
+      .two-col{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Blender Tutorial: STL Miniatures to VTT Character Art</h1>
+    <p class="lead">
+      A practical workflow for taking an STL miniature, adding simple materials, lighting it, applying subtle outline/shadow effects, and exporting it as usable VTT portrait/token art.
+    </p>
+
+    <div class="panel toc">
+      <h2 style="margin-top:0;border-bottom:none;">Contents</h2>
+      <ul>
+        <li>1. Goal and workflow</li>
+        <li>2. Tools and names</li>
+        <li>3. Import and material painting</li>
+        <li>4. Camera setup</li>
+        <li>5. Lighting</li>
+        <li>6. Ambient Occlusion</li>
+        <li>7. Linework / outline</li>
+        <li>8. Export settings</li>
+        <li>9. Post-processing</li>
+        <li>10. Reusable template</li>
+        <li>11. Troubleshooting</li>
+        <li>12. My notes / future additions</li>
+      </ul>
+    </div>
+
+    <h2>1. Goal and Workflow</h2>
+    <div class="panel">
+      <p><strong>Goal:</strong> Use STL minis as fast character-art sources for a VTT.</p>
+      <p><strong>Not the goal:</strong> Perfect 3D texturing, realistic rendering, or deep Blender mastery.</p>
+      <p><strong>Main idea:</strong></p>
+      <ol>
+        <li>Import STL</li>
+        <li>Assign broad material colors</li>
+        <li>Set an <strong>orthographic camera</strong></li>
+        <li>Use <strong>Sun + Area Light</strong></li>
+        <li>Add <strong>Ambient Occlusion</strong> for recess shading</li>
+        <li>Add subtle <strong>Freestyle</strong> lines</li>
+        <li>Render to transparent PNG</li>
+        <li>Do minor cleanup in an image editor</li>
+      </ol>
+    </div>
+
+    <div class="success">
+      This workflow works well because the STL provides the pose and sculpt detail. Blender provides the color, lighting, and stylization needed to turn it into usable art.
+    </div>
+
+    <h2>2. Tools and Names</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>What I kept calling it</th>
+          <th>Proper name</th>
+          <th>Shortcut / Menu</th>
+          <th>Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C brush</td>
+          <td><strong>Circle Select</strong></td>
+          <td><code>C</code></td>
+          <td>Manual brush selection. Great cleanup tool. Probably the main one.</td>
+        </tr>
+        <tr>
+          <td>L thing</td>
+          <td><strong>Select Linked</strong></td>
+          <td>Hover + <code>L</code></td>
+          <td>Only good for truly separate mesh islands.</td>
+        </tr>
+        <tr>
+          <td>linked flat faces</td>
+          <td><strong>Linked Flat Faces</strong></td>
+          <td><code>Select → Select All by Trait → Linked Flat Faces</code></td>
+          <td>Smart surface selection by angle. Extremely useful.</td>
+        </tr>
+        <tr>
+          <td>hide</td>
+          <td><strong>Hide Selected</strong></td>
+          <td><code>H</code></td>
+          <td>Hide current selection so you can work behind/in it.</td>
+        </tr>
+        <tr>
+          <td>unhide</td>
+          <td><strong>Reveal Hidden</strong></td>
+          <td><code>Alt + H</code></td>
+          <td>Bring hidden faces back.</td>
+        </tr>
+        <tr>
+          <td>invert</td>
+          <td><strong>Invert Selection</strong></td>
+          <td><code>Ctrl + I</code></td>
+          <td>Select everything except the current selection.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="panel alt">
+      <h3>Recommended selection workflow</h3>
+      <ol>
+        <li>Select one or a few faces.</li>
+        <li>Use <strong>Linked Flat Faces</strong>.</li>
+        <li>Adjust the <strong>angle/degrees</strong> setting until it grabs the right surface.</li>
+        <li>Use <strong>Circle Select</strong> to clean up.</li>
+        <li>Use <code>H</code> / <code>Alt + H</code> as needed.</li>
+      </ol>
+      <p class="small">In practice: <strong>Linked Flat Faces + Circle Select</strong> is the core combo.</p>
+    </div>
+
+    <h3>Optional: make Linked Flat Faces easier to access</h3>
+    <ul>
+      <li>Right-click the menu item and choose <strong>Assign Shortcut</strong>.</li>
+      <li>Or right-click and choose <strong>Add to Quick Favorites</strong>, then access it with <code>Q</code>.</li>
+    </ul>
+
+    <h2>3. Import and Material Painting</h2>
+
+    <h3>Import</h3>
+    <ol>
+      <li><code>File → Import → STL</code></li>
+      <li>Select the STL.</li>
+      <li>Press <code>Home</code> if you need to frame the model.</li>
+    </ol>
+
+    <h3>Enter the correct mode</h3>
+    <ul>
+      <li>Select the mini.</li>
+      <li>Press <code>Tab</code> for <strong>Edit Mode</strong>.</li>
+      <li>Press <code>3</code> for <strong>Face Select</strong>.</li>
+      <li>Switch viewport shading to <strong>Material Preview</strong>.</li>
+    </ul>
+
+    <h3>Assign materials</h3>
+    <ol>
+      <li>Select the faces you want.</li>
+      <li>Open <strong>Material Properties</strong>.</li>
+      <li>Click <code>+</code> to add a material slot.</li>
+      <li>Click <strong>New</strong>.</li>
+      <li>Set the color/material properties.</li>
+      <li>Click <strong>Assign</strong>.</li>
+    </ol>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Material Type</th>
+          <th>Suggested Settings</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cloth</td>
+          <td>Metallic <code>0</code>, Roughness <code>0.6–0.9</code></td>
+          <td>Use for robes, tunics, pants, banners.</td>
+        </tr>
+        <tr>
+          <td>Leather</td>
+          <td>Metallic <code>0</code>, Roughness <code>0.5–0.8</code></td>
+          <td>Boots, belts, straps, pouches.</td>
+        </tr>
+        <tr>
+          <td>Metal</td>
+          <td>Metallic <code>1.0</code>, Roughness <code>0.25–0.5</code></td>
+          <td>Armor, weapons, buckles.</td>
+        </tr>
+        <tr>
+          <td>Bone / Horn</td>
+          <td>Metallic <code>0</code>, Roughness <code>0.5–0.8</code></td>
+          <td>Skulls, tusks, horns, claws.</td>
+        </tr>
+        <tr>
+          <td>Skin / Fur</td>
+          <td>Metallic <code>0</code>, Roughness <code>0.5–0.8</code></td>
+          <td>Broad tones are enough.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      Do not obsess over tiny details. Broad readable material zones matter more than perfect precision.
+    </div>
+
+    <h3>If the mesh is too low-detail for face-based painting</h3>
+    <p>To add more faces in one area:</p>
+    <ol>
+      <li>Select the faces.</li>
+      <li>Right-click → <strong>Subdivide</strong>.</li>
+      <li>Adjust <strong>Number of Cuts</strong>.</li>
+    </ol>
+    <p><strong>Important:</strong> use small numbers. Try <code>1–4</code> cuts first.</p>
+    <div class="note">
+      Do <strong>not</strong> accidentally type <code>100</code> cuts unless you want to visit the Warp.
+    </div>
+
+    <h2>4. Camera Setup</h2>
+
+    <h3>Why orthographic?</h3>
+    <p>
+      An <strong>orthographic camera</strong> removes perspective distortion. That makes the mini feel less like a photographed toy and more like game art.
+    </p>
+
+    <h3>Set up the camera</h3>
+    <ol>
+      <li>Add a camera if needed: <code>Shift + A → Camera</code></li>
+      <li>Frame the model in the viewport.</li>
+      <li>Press <code>Ctrl + Alt + Numpad 0</code> to snap the camera to your current view.</li>
+      <li>Press <code>Numpad 0</code> to look through the camera.</li>
+      <li>Select the camera.</li>
+      <li>Open <strong>Camera Properties</strong>.</li>
+      <li>Set <strong>Type → Orthographic</strong>.</li>
+      <li>Adjust <strong>Orthographic Scale</strong> for zoom/framing.</li>
+    </ol>
+
+    <h3>Move camera using normal controls</h3>
+    <ol>
+      <li>Enter camera view with <code>Numpad 0</code>.</li>
+      <li>Press <code>N</code>.</li>
+      <li>Open the <strong>View</strong> tab.</li>
+      <li>Enable <strong>Camera to View</strong>.</li>
+      <li>Now move the view normally to reposition the camera.</li>
+      <li>Disable <strong>Camera to View</strong> when done.</li>
+    </ol>
+
+    <h2>5. Lighting</h2>
+
+    <p>Keep it simple. Use two lights:</p>
+    <div class="panel">
+      <span class="pill">Sun Light = broad visibility</span>
+      <span class="pill">Area Light = focused portrait light</span>
+    </div>
+
+    <h3>Sun Light</h3>
+    <ol>
+      <li><code>Shift + A → Light → Sun</code></li>
+      <li>Set strength roughly around <code>0.3–1.5</code>.</li>
+    </ol>
+    <p>Use the Sun to keep the model readable. Lower it if the image looks too flat.</p>
+
+    <h3>Area Light</h3>
+    <ol>
+      <li><code>Shift + A → Light → Area</code></li>
+      <li>Select it and press <code>G</code> to move it.</li>
+      <li>Use <code>G</code> then <code>X</code>, <code>Y</code>, or <code>Z</code> if needed.</li>
+      <li>Place it <strong>in front</strong>, <strong>above</strong>, and slightly <strong>to one side</strong>.</li>
+      <li>Rotate with <code>R</code> if desired.</li>
+    </ol>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area Light Setting</th>
+          <th>Suggested Value</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Power</td>
+          <td><code>300–800</code></td>
+          <td>Main light intensity</td>
+        </tr>
+        <tr>
+          <td>Size</td>
+          <td><code>3–6</code></td>
+          <td>Larger = softer shadows</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="success">
+      Your discovered setup is valid: <strong>Sun + Area Light</strong> works well. The Sun acts like general illumination, and the Area Light gives a focused portrait effect.
+    </div>
+
+    <h2>6. Ambient Occlusion</h2>
+
+    <h3>What it is</h3>
+    <p>
+      <strong>Ambient Occlusion (AO)</strong> darkens creases, folds, contact points, and recessed areas. Think: digital recess shading / wash.
+    </p>
+
+    <h3>Use Eevee / Eevee Next</h3>
+    <ol>
+      <li>Open <strong>Render Properties</strong>.</li>
+      <li>Set <strong>Render Engine</strong> to <strong>Eevee</strong> or <strong>Eevee Next</strong>.</li>
+      <li>Switch the viewport to <strong>Rendered View</strong>.</li>
+    </ol>
+
+    <h3>Where AO is in newer Blender</h3>
+    <p>Usually under:</p>
+    <pre>Render Properties → Raytracing → Fast GI Approximation → Method → Ambient Occlusion</pre>
+
+    <h3>What to adjust</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Setting</th>
+          <th>What it does</th>
+          <th>What to do</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Distance</td>
+          <td>How far the recess shading spreads</td>
+          <td>Main setting to tune</td>
+        </tr>
+        <tr>
+          <td>Resolution / Rays / Steps / Precision</td>
+          <td>Quality settings</td>
+          <td>Adjust later if needed</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>How to tune AO</h3>
+    <ol>
+      <li>Look through the <strong>orthographic camera</strong>.</li>
+      <li>Adjust AO <strong>Distance</strong> while watching the result.</li>
+      <li>Increase it until recesses become visible.</li>
+      <li>Stop before the whole model becomes muddy.</li>
+    </ol>
+
+    <div class="panel alt">
+      <h3>Scale matters</h3>
+      <p>
+        AO settings depend heavily on model scale. A huge model may need much larger values than a normal infantry-sized or hero-sized model.
+      </p>
+      <p class="small">
+        Personal note from prior testing: on a very large giant-sized mini, the AO effect became more noticeable around <strong>50</strong> distance and could go higher for darker recesses.
+      </p>
+    </div>
+
+    <h3>If AO seems subtle</h3>
+    <ul>
+      <li>That is normal.</li>
+      <li>AO is meant to work <strong>with lighting</strong>, not replace it.</li>
+      <li>Lower Sun strength if lighting is flattening the effect.</li>
+      <li>Judge AO from the final camera angle, not just from random viewport angles.</li>
+    </ul>
+
+    <h2>7. Linework / Outline</h2>
+
+    <h3>Use Freestyle</h3>
+    <ol>
+      <li>Open <strong>Render Properties</strong>.</li>
+      <li>Enable <strong>Freestyle</strong>.</li>
+      <li>Render with <code>F12</code> to see the result.</li>
+    </ol>
+
+    <h3>Line settings</h3>
+    <ul>
+      <li>Open <strong>View Layer Properties</strong> for Freestyle settings.</li>
+      <li>Use line thickness <strong>1</strong>.</li>
+    </ul>
+
+    <div class="success">
+      Thickness <strong>1</strong> is the sweet spot. Higher than that tends to look intentionally cartoonish.
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Freestyle Setting</th>
+          <th>Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Thickness</td>
+          <td><code>1</code></td>
+        </tr>
+        <tr>
+          <td>Edge types</td>
+          <td>Start with <strong>Silhouette</strong> and <strong>Contour</strong></td>
+        </tr>
+        <tr>
+          <td>Extra detail</td>
+          <td>Optionally add <strong>Crease</strong> if needed</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>8. Export Settings</h2>
+
+    <h3>Transparent background</h3>
+    <ol>
+      <li>Open <strong>Render Properties</strong>.</li>
+      <li>Open <strong>Film</strong>.</li>
+      <li>Enable <strong>Transparent</strong>.</li>
+    </ol>
+
+    <h3>Output format</h3>
+    <ol>
+      <li>Open <strong>Output Properties</strong>.</li>
+      <li>Set file format to <strong>PNG</strong>.</li>
+      <li>Set color to <strong>RGBA</strong>.</li>
+    </ol>
+
+    <h3>Recommended render sizes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Use</th>
+          <th>Suggested Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Portrait / token source</td>
+          <td><code>1024 × 1024</code></td>
+        </tr>
+        <tr>
+          <td>Full-body character art</td>
+          <td><code>1200 × 1600</code> or larger</td>
+        </tr>
+        <tr>
+          <td>Large creature</td>
+          <td><code>1600 × 2000</code> or larger</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Render</h3>
+    <ol>
+      <li>Press <code>F12</code>.</li>
+      <li>When done: <code>Image → Save As</code>.</li>
+      <li>Save as PNG.</li>
+    </ol>
+
+    <h2>9. Post-Processing</h2>
+
+    <p>Do final cleanup in an image editor like GIMP, Krita, Photoshop, Photopea, etc.</p>
+
+    <ol>
+      <li><strong>Crop tighter</strong> so the character reads clearly.</li>
+      <li><strong>Add subtle outer glow or shadow</strong> to separate the figure from backgrounds.</li>
+      <li><strong>Add a thin outer stroke</strong> if needed for readability.</li>
+      <li><strong>Slightly boost contrast</strong> if the image feels flat.</li>
+      <li><strong>Downscale</strong> if needed for final VTT use.</li>
+    </ol>
+
+    <div class="note">
+      Keep post effects subtle. The goal is polish, not turning the image into a sticker.
+    </div>
+
+    <h2>10. Reusable Template</h2>
+
+    <p>Once you get a scene working well, save a reusable Blender file.</p>
+
+    <h3>Template should include</h3>
+    <ul>
+      <li>Orthographic camera</li>
+      <li>Sun Light</li>
+      <li>Area Light</li>
+      <li>Eevee / Eevee Next</li>
+      <li>AO enabled</li>
+      <li>Freestyle enabled</li>
+      <li>Transparent background</li>
+      <li>Common material slots</li>
+    </ul>
+
+    <p>Suggested filename:</p>
+    <pre>vtt-stl-render-template.blend</pre>
+
+    <h3>Future mini workflow</h3>
+    <ol>
+      <li>Open the template.</li>
+      <li>Import STL.</li>
+      <li>Paint material zones.</li>
+      <li>Adjust camera framing.</li>
+      <li>Tune AO for model scale.</li>
+      <li>Render and export.</li>
+    </ol>
+
+    <h2>11. Troubleshooting</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>Likely fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Material color is not visible</td>
+          <td>Use <strong>Material Preview</strong> or <strong>Rendered View</strong>.</td>
+        </tr>
+        <tr>
+          <td>Linked Flat Faces selects almost nothing</td>
+          <td>Increase the angle/degrees setting.</td>
+        </tr>
+        <tr>
+          <td>Linked Flat Faces selects too much</td>
+          <td>Lower the angle/degrees setting, then clean up with Circle Select.</td>
+        </tr>
+        <tr>
+          <td>Select Linked grabs the whole model</td>
+          <td>The STL is fused. Use Linked Flat Faces + Circle Select instead.</td>
+        </tr>
+        <tr>
+          <td>Dragging the Area Light just resizes it</td>
+          <td>Select it, then move with <code>G</code>.</td>
+        </tr>
+        <tr>
+          <td>Lighting looks flat</td>
+          <td>Lower Sun strength or move Area Light more to the side.</td>
+        </tr>
+        <tr>
+          <td>AO seems too subtle</td>
+          <td>Increase Distance; judge through the camera; lower Sun strength.</td>
+        </tr>
+        <tr>
+          <td>AO makes the whole model muddy</td>
+          <td>Lower Distance.</td>
+        </tr>
+        <tr>
+          <td>Freestyle lines look too cartoony</td>
+          <td>Use thickness <code>1</code>.</td>
+        </tr>
+        <tr>
+          <td>Background is not transparent</td>
+          <td>Enable <strong>Film → Transparent</strong> and export PNG <strong>RGBA</strong>.</td>
+        </tr>
+        <tr>
+          <td>Blender freezes after massive subdivide</td>
+          <td>Try <code>Ctrl + Z</code>. If needed, reopen and recover/autosave. Use smaller subdivide values next time.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>12. My Notes / Future Additions</h2>
+    <div class="panel">
+      <p>Use this section to keep personal discoveries.</p>
+      <ul>
+        <li>Freestyle thickness <strong>1</strong> looks best.</li>
+        <li>Sun + Area Light works well.</li>
+        <li>AO should be adjusted while looking through the orthographic camera.</li>
+        <li>Huge miniatures may need very high AO distance values.</li>
+        <li>Linked Flat Faces + Circle Select is the core selection workflow.</li>
+      </ul>
+      <hr style="border-color:var(--border);" />
+      <p class="small">Add more notes below as you refine the process:</p>
+      <ul>
+        <li>[Add note here]</li>
+        <li>[Add note here]</li>
+        <li>[Add note here]</li>
+      </ul>
+    </div>
+
+    <h2>Quick Recap</h2>
+    <div class="panel checklist">
+      <ul>
+        <li>Import STL</li>
+        <li>Edit Mode → Face Select</li>
+        <li>Linked Flat Faces + Circle Select</li>
+        <li>Assign broad materials</li>
+        <li>Orthographic camera</li>
+        <li>Sun + Area Light</li>
+        <li>Eevee / Eevee Next</li>
+        <li>Ambient Occlusion</li>
+        <li>Freestyle thickness 1</li>
+        <li>Transparent PNG export</li>
+        <li>Minor post-processing</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
