@@ -27,7 +27,11 @@ No build step or external dependency is required.
 ## Project files
 
 - `index.html` — the polished public guide
+- `docs/advanced/index.html` — optional advanced techniques hub
+- `docs/advanced/*.html` — focused pages for materials, lighting, backgrounds, paint, shading, compositing, kitbashing, templates, and alternate tools
 - `notes.md` — ongoing discoveries, Blender-version-specific notes, and future screenshot ideas
 - `README.md` — project purpose and quick start
 
 The guide is designed to grow with screenshots of Material Properties, Linked Flat Faces, Camera Properties, Eevee/AO, and Freestyle when those examples are available.
+
+The advanced pages are deliberately separate. They are optional next steps after the basic workflow, not prerequisites for getting a usable render.
