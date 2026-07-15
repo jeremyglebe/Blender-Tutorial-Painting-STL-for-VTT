@@ -76,4 +76,5 @@ details { margin: .65rem 0; border: 1px solid var(--line); border-radius: 10px; 
 summary { padding: .75rem .9rem; cursor: pointer; font-weight: 800; }
 details > div { padding: 0 .9rem .8rem; color: var(--soft); font-size: .9rem; }
 .footer { padding: 2rem 0 4rem; border-top: 1px solid var(--line); color: var(--soft); font-size: .86rem; }
+.feedback { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 @media (max-width: 760px) { .top-inner { align-items: flex-start; flex-direction: column; } .top-nav { justify-content: flex-start; } .hero { padding: 3.5rem 0 2.5rem; } .card-grid, .card-grid.three, .lesson-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; white-space: nowrap; } }

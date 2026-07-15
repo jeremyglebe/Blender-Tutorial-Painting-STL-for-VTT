@@ -1,0 +1,38 @@
+name: Material recipe suggestion
+description: Suggest a practical material recipe or improve an existing one.
+title: "Material recipe: "
+labels: ["material-recipe", "reference"]
+body:
+  - type: input
+    id: material-name
+    attributes:
+      label: Material name
+    validations:
+      required: true
+  - type: input
+    id: use-for
+    attributes:
+      label: Use for
+      placeholder: "Example: worn leather boots"
+    validations:
+      required: true
+  - type: input
+    id: blender-version
+    attributes:
+      label: Blender version
+  - type: textarea
+    id: starting-settings
+    attributes:
+      label: Starting settings
+      description: Include Surface, Base Color, Metallic, Roughness, and Emission when relevant.
+      value: "- Surface:\n- Base Color:\n- Metallic:\n- Roughness:\n- Emission:"
+    validations:
+      required: true
+  - type: textarea
+    id: optional-upgrades
+    attributes:
+      label: Optional upgrades
+  - type: textarea
+    id: example
+    attributes:
+      label: Screenshot / example render

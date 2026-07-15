@@ -1,0 +1,46 @@
+name: Blender UI changed
+description: Report a moved, renamed, or unavailable Blender control.
+title: "UI change: "
+labels: ["blender-version", "documentation"]
+body:
+  - type: input
+    id: blender-version
+    attributes:
+      label: Blender version
+      placeholder: "Example: Blender 4.x"
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating system
+    validations:
+      required: true
+  - type: input
+    id: page-section
+    attributes:
+      label: Page / section affected
+    validations:
+      required: true
+  - type: textarea
+    id: current-instruction
+    attributes:
+      label: Current instruction
+      description: Paste the instruction that no longer matches.
+    validations:
+      required: true
+  - type: textarea
+    id: what-changed
+    attributes:
+      label: What changed?
+    validations:
+      required: true
+  - type: textarea
+    id: new-path
+    attributes:
+      label: New menu path / setting name
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag in a screenshot if it helps.

@@ -1,0 +1,26 @@
+name: Tutorial is unclear
+description: Point out a step that is confusing or assumes too much.
+title: "Unclear instructions: "
+labels: ["documentation", "beginner-feedback"]
+body:
+  - type: input
+    id: page-section
+    attributes:
+      label: Page / section
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: What was confusing?
+      description: Tell us what you expected and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-wording
+    attributes:
+      label: Suggested wording
+  - type: input
+    id: blender-version
+    attributes:
+      label: Blender version, if relevant

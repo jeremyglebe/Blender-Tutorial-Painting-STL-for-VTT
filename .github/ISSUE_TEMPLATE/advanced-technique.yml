@@ -1,0 +1,33 @@
+name: Advanced technique suggestion
+description: Suggest an optional Advanced or Reference topic for STL-to-VTT art.
+title: "Advanced technique: "
+labels: ["advanced", "idea"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it belong here?
+    validations:
+      required: true
+  - type: dropdown
+    id: location
+    attributes:
+      label: Suggested location
+      options:
+        - Advanced
+        - Reference
+        - Not sure
+  - type: textarea
+    id: blender-only
+    attributes:
+      label: Blender-only or external tool?
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Example VTT use case
