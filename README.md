@@ -50,7 +50,7 @@ No build step or external dependency is required.
 
 ## Blender Version Notes
 
-The guide documents Blender 4.x-era workflows while acknowledging that panel names and render options move between releases. See [notes.md](notes.md) for version-specific observations. If a menu moved or a setting was renamed, please [open an issue](https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT/issues) with your Blender version and a screenshot when possible.
+The guide documents Blender 4.x-era workflows while acknowledging that panel names and render options move between releases. See [notes.md](notes.md) for version-specific observations. If a menu moved or a setting was renamed, please [open an issue](https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT/issues) with the Blender version and a screenshot when possible.
 
 ## Contributing
 

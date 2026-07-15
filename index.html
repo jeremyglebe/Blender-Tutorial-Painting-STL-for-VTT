@@ -203,7 +203,7 @@
 
   <div class="layout" id="top">
     <aside class="side-nav" id="side-nav" aria-label="Guide contents">
-      <p class="side-kicker">Your learning path</p>
+      <p class="side-kicker">Learning path</p>
       <ol>
         <li><a href="#start">Start here</a></li>
         <li><a href="#mental-model">The mental model</a></li>
@@ -232,13 +232,13 @@
           <a class="button" href="#start">Begin the guide <span aria-hidden="true">↓</span></a>
           <a class="button secondary" href="#reference">Jump to the recipe</a>
         </div>
-        <p class="hero-note"><strong>The guiding idea:</strong> the STL already solved pose and sculpt detail. Your job is to make the important shapes readable at the size your players will actually see.</p>
+        <p class="hero-note"><strong>The guiding idea:</strong> the STL already solves pose and sculpt detail. The task is to make important shapes readable at the size used in play.</p>
       </section>
 
       <section class="section" id="start" aria-labelledby="start-title">
         <span class="section-tag">Start here</span>
         <h2 id="start-title">Learn the decisions, not every Blender button.</h2>
-        <p class="section-intro">This workflow has a small number of high-impact choices. Work through the lessons in order once, then use the sidebar as a launchpad when you return for another miniature.</p>
+        <p class="section-intro">This workflow has a small number of high-impact choices. Work through the lessons in order once, then use the sidebar as a launchpad when returning with another miniature.</p>
         <div class="outcomes">
           <article class="outcome"><span class="outcome-number">01</span><h3>Readable color</h3><p>Use broad material zones that survive a small token size. Precision is optional; hierarchy is not.</p></article>
           <article class="outcome"><span class="outcome-number">02</span><h3>Graphic framing</h3><p>Use an orthographic camera to keep the result from looking like a screenshot of a toy.</p></article>
@@ -253,16 +253,16 @@
           <div class="workflow-step"><span>06</span><strong>Export transparently</strong></div>
           <div class="workflow-step"><span>07</span><strong>Save the template</strong></div>
         </div>
-        <div class="band mint"><strong>Before you begin:</strong> save a copy of the STL or work in a new Blender file. This workflow is intentionally experimental; you should be able to undo boldly.</div>
+        <div class="band mint"><strong>Before beginning:</strong> save a copy of the STL or work in a new Blender file. This workflow is intentionally experimental; bold undoing should remain safe.</div>
       </section>
 
       <section class="section" id="mental-model" aria-labelledby="mental-title">
         <span class="section-tag">A useful mental model</span>
         <h2 id="mental-title">Think like a painter with a camera.</h2>
-        <p class="section-intro">You are not trying to build a perfect digital miniature. You are arranging a handful of visual signals so the character reads quickly in a scene.</p>
+        <p class="section-intro">The goal is not a perfect digital miniature. The process arranges a handful of visual signals so the character reads quickly in a scene.</p>
         <div class="grid-3">
           <article class="card"><h3>Silhouette</h3><p>Does the pose and outer shape identify the character? If not, fix the camera before adding detail.</p></article>
-          <article class="card"><h3>Color blocks</h3><p>Can you tell cloth, leather, metal, skin, and props apart at a glance? Broad zones do the heavy lifting.</p></article>
+          <article class="card"><h3>Color blocks</h3><p>Cloth, leather, metal, skin, and props should separate at a glance. Broad zones do the heavy lifting.</p></article>
           <article class="card"><h3>Depth cues</h3><p>Do folds and contact points separate? Lighting and AO should support the sculpt, not bury it.</p></article>
         </div>
         <div class="formula">STL pose + broad materials + orthographic framing + selective depth = usable VTT art</div>
@@ -270,31 +270,31 @@
       </section>
 
       <section class="section" id="prepare" aria-labelledby="prepare-title" data-lesson="1">
-        <div class="lesson-head"><span class="lesson-number">1</span><div><span class="section-tag">Lesson one · prepare</span><h2 id="prepare-title">Get the mesh ready to work.</h2><p>Import, frame, and inspect before you start assigning colors. A clean setup prevents confusion later.</p></div><button class="complete-button" type="button" data-complete="1">Mark complete</button></div>
+        <div class="lesson-head"><span class="lesson-number">1</span><div><span class="section-tag">Lesson one · prepare</span><h2 id="prepare-title">Get the mesh ready to work.</h2><p>Import, frame, and inspect before assigning colors. A clean setup prevents confusion later.</p></div><button class="complete-button" type="button" data-complete="1">Mark complete</button></div>
         <div class="grid-2">
-          <article class="card"><h3>Import and inspect</h3><ol class="step-list"><li><span><strong>Open a fresh scene.</strong> Keep the default camera and lights only if you know what they are doing.</span></li><li><span><strong>Import the STL.</strong> Use <span class="key">File → Import → STL</span>; the exact menu label can vary with your Blender version.</span></li><li><span><strong>Frame the model.</strong> Select it and press <span class="key">Home</span> if you lose it in the viewport.</span></li></ol></article>
+          <article class="card"><h3>Import and inspect</h3><ol class="step-list"><li><span><strong>Open a fresh scene.</strong> Keep the default camera and lights only when their purpose is clear.</span></li><li><span><strong>Import the STL.</strong> Use <span class="key">File → Import → STL</span>; the exact menu label can vary with the Blender version.</span></li><li><span><strong>Frame the model.</strong> Select it and press <span class="key">Home</span> if it disappears in the viewport.</span></li></ol></article>
           <article class="card"><h3>Check these three things</h3><ul><li><strong>Scale:</strong> does the object appear absurdly huge or tiny compared with the grid?</li><li><strong>Orientation:</strong> which side is the character's front?</li><li><strong>Geometry:</strong> are there floating parts, holes, or unexpected loose pieces?</li></ul><div class="callout mint"><b>Do not fix everything yet.</b> Note problems that affect the camera or materials; leave cosmetic cleanup for later.</div></article>
         </div>
-        <div class="band gold"><strong>Checkpoint:</strong> you should be able to orbit around the model, identify its front, and see its main shapes clearly before entering Edit Mode.</div>
+        <div class="band gold"><strong>Checkpoint:</strong> the model should be easy to orbit around, with its front and main shapes clearly identifiable before entering Edit Mode.</div>
       </section>
 
       <section class="section" id="paint" aria-labelledby="paint-title" data-lesson="2">
-        <div class="lesson-head"><span class="lesson-number">2</span><div><span class="section-tag">Lesson two · paint</span><h2 id="paint-title">Paint broad zones, not tiny pixels.</h2><p>STLs are often one fused mesh. That is fine. You can still assign different materials to faces selected by their surface angle and clean up manually.</p></div><button class="complete-button" type="button" data-complete="2">Mark complete</button></div>
+        <div class="lesson-head"><span class="lesson-number">2</span><div><span class="section-tag">Lesson two · paint</span><h2 id="paint-title">Paint broad zones, not tiny pixels.</h2><p>STLs are often one fused mesh. That is fine. Different materials can still be assigned to faces selected by their surface angle and cleaned up manually.</p></div><button class="complete-button" type="button" data-complete="2">Mark complete</button></div>
         <div class="grid-2">
-          <article class="card"><h3>The core selection loop</h3><ol class="step-list"><li><span>Choose the object and press <span class="key">Tab</span> for <strong>Edit Mode</strong>.</span></li><li><span>Press <span class="key">3</span> for <strong>Face Select</strong>. Use Material Preview so colors are visible.</span></li><li><span>Select a few faces on the surface you want.</span></li><li><span>Use <strong>Select → Select All by Trait → Linked Flat Faces</strong>. Adjust its angle until it catches the right zone.</span></li><li><span>Use <span class="key">C</span> for <strong>Circle Select</strong> to add or remove faces. Hover over a connected island and press <span class="key">L</span> only when the geometry is truly separate.</span></li></ol></article>
+          <article class="card"><h3>The core selection loop</h3><ol class="step-list"><li><span>Choose the object and press <span class="key">Tab</span> for <strong>Edit Mode</strong>.</span></li><li><span>Press <span class="key">3</span> for <strong>Face Select</strong>. Use Material Preview so colors are visible.</span></li><li><span>Select a few faces on the target surface.</span></li><li><span>Use <strong>Select → Select All by Trait → Linked Flat Faces</strong>. Adjust its angle until it catches the right zone.</span></li><li><span>Use <span class="key">C</span> for <strong>Circle Select</strong> to add or remove faces. Hover over a connected island and press <span class="key">L</span> only when the geometry is truly separate.</span></li></ol></article>
           <article class="card"><h3>Hide and recover</h3><p>Painting the back of a model is easier when the front is temporarily out of the way.</p><ul><li><span class="key">H</span> hides the current selection.</li><li><span class="key">Alt + H</span> reveals hidden geometry.</li><li><span class="key">Ctrl + I</span> inverts the selection.</li></ul><p class="tiny">If Linked Flat Faces grabs too much, lower the angle. If it grabs too little, raise it. Circle Select is the cleanup tool, not a failure state.</p></article>
         </div>
-        <div class="card"><h3>Start With a Primer Material</h3><p>Before painting individual parts, give the whole model a base material. Think of this like priming a real miniature.</p><p>The first material you add to a Blender object often becomes the material used by the whole object. If the entire model changes color, that is normal—you did not necessarily select the wrong thing.</p><ul><li><strong>Name:</strong> <code>Primer</code> or <code>Primer (Matte Black)</code></li><li><strong>Color:</strong> very dark gray, almost black</li><li><strong>Surface:</strong> Diffuse / matte</li><li><strong>Metallic:</strong> <code>0</code> · <strong>Roughness:</strong> high, if available</li></ul><p class="tiny">Treat it as the unpainted/default color. Then add skin, cloth, metal, leather, and other materials and assign them to selected faces.</p></div>
+        <div class="card"><h3>Start With a Primer Material</h3><p>Before painting individual parts, give the whole model a base material. This is the digital equivalent of priming a real miniature.</p><p>The first material added to a Blender object often becomes the material used by the whole object. If the entire model changes color, that is normal and does not necessarily indicate an incorrect selection.</p><ul><li><strong>Name:</strong> <code>Primer</code> or <code>Primer (Matte Black)</code></li><li><strong>Color:</strong> very dark gray, almost black</li><li><strong>Surface:</strong> Diffuse / matte</li><li><strong>Metallic:</strong> <code>0</code> · <strong>Roughness:</strong> high, if available</li></ul><p class="tiny">Treat it as the unpainted/default color. Then add skin, cloth, metal, leather, and other materials and assign them to selected faces.</p></div>
         <div class="mini-label">A useful starter palette</div>
         <table><thead><tr><th>Zone</th><th>Starter material</th><th>What matters visually</th></tr></thead><tbody><tr><td><strong>Cloth</strong></td><td>Metallic 0 · Roughness .6–.9</td><td>Matte, large color shapes</td></tr><tr><td><strong>Leather</strong></td><td>Metallic 0 · Roughness .5–.8</td><td>A slightly deeper value than cloth</td></tr><tr><td><strong>Metal</strong></td><td>Metallic 1 · Roughness .25–.5</td><td>Value contrast and a few highlights</td></tr><tr><td><strong>Skin / fur</strong></td><td>Metallic 0 · Roughness .5–.8</td><td>Enough contrast to separate it from clothing</td></tr><tr><td><strong>Bone / horn</strong></td><td>Metallic 0 · Roughness .5–.8</td><td>A light or warm accent zone</td></tr></tbody></table>
-        <div class="band"><strong>When the mesh is too low-detail:</strong> select only the area you need, right-click → <strong>Subdivide</strong>, and start with 1–4 cuts. Subdivision is a local tool. A huge cut count can make Blender unresponsive.</div>
-        <div class="callout mint"><b>Checkpoint:</b> switch to Material Preview and squint at the model. If the large color relationships make sense, you are done painting for now.</div>
+        <div class="band"><strong>When the mesh is too low-detail:</strong> select only the needed area, right-click → <strong>Subdivide</strong>, and start with 1–4 cuts. Subdivision is a local tool. A huge cut count can make Blender unresponsive.</div>
+        <div class="callout mint"><b>Checkpoint:</b> switch to Material Preview and squint at the model. If the large color relationships make sense, painting can stop for now.</div>
       </section>
 
       <section class="section" id="camera" aria-labelledby="camera-title" data-lesson="3">
         <div class="lesson-head"><span class="lesson-number">3</span><div><span class="section-tag">Lesson three · frame</span><h2 id="camera-title">Make the camera do the graphic design.</h2><p>An orthographic camera keeps parallel lines parallel and removes the “photographed action figure” feeling of perspective.</p></div><button class="complete-button" type="button" data-complete="3">Mark complete</button></div>
         <div class="grid-2">
-          <article class="card"><h3>Set the camera</h3><ol class="step-list"><li><span>Add a camera with <span class="key">Shift + A → Camera</span> if needed.</span></li><li><span>Compose the pose in the viewport, then use <span class="key">Ctrl + Alt + Numpad 0</span> to align the active camera to your view.</span></li><li><span>Press <span class="key">Numpad 0</span> to look through it.</span></li><li><span>In Camera Properties, change <strong>Type</strong> to <strong>Orthographic</strong>.</span></li><li><span>Adjust <strong>Orthographic Scale</strong> for the crop. Smaller scale means a closer framing.</span></li></ol></article>
+          <article class="card"><h3>Set the camera</h3><ol class="step-list"><li><span>Add a camera with <span class="key">Shift + A → Camera</span> if needed.</span></li><li><span>Compose the pose in the viewport, then use <span class="key">Ctrl + Alt + Numpad 0</span> to align the active camera to the active view.</span></li><li><span>Press <span class="key">Numpad 0</span> to look through the camera.</span></li><li><span>In Camera Properties, change <strong>Type</strong> to <strong>Orthographic</strong>.</span></li><li><span>Adjust <strong>Orthographic Scale</strong> for the crop. Smaller scale means a closer framing.</span></li></ol></article>
           <article class="card"><h3>Compose for a token</h3><ul><li>Leave a little breathing room around the silhouette.</li><li>Keep the face and the main prop out of the extreme edge of the frame.</li><li>Try a slight three-quarter angle instead of a perfectly flat front view.</li><li>Check the crop at the final output size, not only while zoomed into the viewport.</li></ul><div class="callout"><b>Camera first:</b> if the character does not read as a silhouette, lighting and materials cannot rescue the composition.</div></article>
         </div>
         <div class="band blue"><strong>Easy camera movement:</strong> in camera view, open the <span class="key">N</span> panel → <strong>View</strong> → enable <strong>Camera to View</strong>. Move the view normally, then disable it when framing is finished.</div>
@@ -307,23 +307,23 @@
           <article class="card"><h3>Area = portrait shape</h3><p>Add <span class="key">Shift + A → Light → Area</span>. Place it in front, above, and slightly to one side. Move with <span class="key">G</span>; rotate with <span class="key">R</span>.</p><p class="tiny">Start around 300–800 power and size 3–6, then tune by eye. Larger size gives softer shadows.</p></article>
         </div>
         <div class="recipe"><span><b>Too flat?</b> Lower Sun strength</span><span><b>Too harsh?</b> Increase Area size</span><span><b>Face too dark?</b> Move Area toward camera</span><span><b>Depth missing?</b> Move Area farther to the side</span></div>
-        <div class="callout mint"><b>Checkpoint:</b> in Rendered View, you should see a readable face, a light side, and a shadow side. You are looking for shape—not drama.</div>
+        <div class="callout mint"><b>Checkpoint:</b> Rendered View should show a readable face, a light side, and a shadow side. The target is shape—not drama.</div>
       </section>
 
       <section class="section" id="depth" aria-labelledby="depth-title" data-lesson="5">
         <div class="lesson-head"><span class="lesson-number">5</span><div><span class="section-tag">Lesson five · depth</span><h2 id="depth-title">Let recesses and edges explain the sculpt.</h2><p>Ambient Occlusion gives folds and contact points a little extra separation. Freestyle can add a clean graphic boundary.</p></div><button class="complete-button" type="button" data-complete="5">Mark complete</button></div>
         <div class="grid-2">
-          <article class="card"><h3>Ambient Occlusion (AO)</h3><p>Use Eevee / Eevee Next for a fast feedback loop. In newer layouts, AO may appear under a Raytracing or Fast GI Approximation area in Render Properties.</p><ol><li>Look through the final camera.</li><li>Increase AO <strong>Distance</strong> until creases become visible.</li><li>Stop before the whole model turns muddy.</li></ol><p class="tiny">AO depends on scene scale. Your large-giant experiment around 50 is a useful personal reference, not a universal setting.</p></article>
+          <article class="card"><h3>Ambient Occlusion (AO)</h3><p>Use Eevee / Eevee Next for a fast feedback loop. In newer layouts, AO may appear under a Raytracing or Fast GI Approximation area in Render Properties.</p><ol><li>Look through the final camera.</li><li>Increase AO <strong>Distance</strong> until creases become visible.</li><li>Stop before the whole model turns muddy.</li></ol><p class="tiny">AO depends on scene scale. Large-giant tests around 50 are useful reference points, not universal settings.</p></article>
           <article class="card"><h3>Freestyle linework</h3><p>Enable Freestyle in Render Properties and render with <span class="key">F12</span>. Start with a line thickness of <strong>1</strong>.</p><ul><li>Begin with Silhouette and Contour.</li><li>Add Crease only when the sculpt needs more help.</li><li>If it looks too cartoonish, lower line weight before changing everything else.</li></ul></article>
         </div>
-        <div class="band gold"><strong>Order matters:</strong> tune lighting first, then AO, then Freestyle. Otherwise you cannot tell which control created the visual change.</div>
+        <div class="band gold"><strong>Order matters:</strong> tune lighting first, then AO, then Freestyle. Otherwise the source of a visual change remains unclear.</div>
       </section>
 
       <section class="section" id="export" aria-labelledby="export-title" data-lesson="6">
-        <div class="lesson-head"><span class="lesson-number">6</span><div><span class="section-tag">Lesson six · export</span><h2 id="export-title">Export the clean source your VTT needs.</h2><p>Keep the background transparent so the same render can work on different maps, cards, tokens, and portraits.</p></div><button class="complete-button" type="button" data-complete="6">Mark complete</button></div>
+        <div class="lesson-head"><span class="lesson-number">6</span><div><span class="section-tag">Lesson six · export</span><h2 id="export-title">Export a clean VTT source.</h2><p>Keep the background transparent so the same render can work on different maps, cards, tokens, and portraits.</p></div><button class="complete-button" type="button" data-complete="6">Mark complete</button></div>
         <div class="grid-2">
           <article class="card"><h3>Transparent PNG</h3><ol class="step-list"><li><span>Render Properties → Film → enable <strong>Transparent</strong>.</span></li><li><span>Output Properties → set file format to <strong>PNG</strong>.</span></li><li><span>Set color to <strong>RGBA</strong>, not RGB.</span></li><li><span>Press <span class="key">F12</span>, then Image → Save As.</span></li></ol></article>
-          <article class="card"><h3>Good starting sizes</h3><table><thead><tr><th>Use</th><th>Size</th></tr></thead><tbody><tr><td>Square token source</td><td><code>1024 × 1024</code></td></tr><tr><td>Full-body portrait</td><td><code>1200 × 1600</code></td></tr><tr><td>Large creature</td><td><code>1600 × 2000+</code></td></tr></tbody></table><p class="tiny">Render larger when you can, then downscale. Keep the transparent master so you can make new crops later.</p></article>
+          <article class="card"><h3>Good starting sizes</h3><table><thead><tr><th>Use</th><th>Size</th></tr></thead><tbody><tr><td>Square token source</td><td><code>1024 × 1024</code></td></tr><tr><td>Full-body portrait</td><td><code>1200 × 1600</code></td></tr><tr><td>Large creature</td><td><code>1600 × 2000+</code></td></tr></tbody></table><p class="tiny">Render larger when practical, then downscale. Keep the transparent master for future crops.</p></article>
         </div>
         <div class="mini-label">Post-processing pass</div>
         <div class="checklist" aria-label="Post-processing checklist"><label><input type="checkbox"><span>Crop closer so the character reads immediately.</span></label><label><input type="checkbox"><span>Add a subtle outer glow or shadow only if the map needs separation.</span></label><label><input type="checkbox"><span>Use a thin outer stroke when the silhouette disappears on busy backgrounds.</span></label><label><input type="checkbox"><span>Slightly lift contrast if the render feels flat.</span></label><label><input type="checkbox"><span>Downscale a copy for final VTT use; keep the master PNG.</span></label></div>
@@ -331,12 +331,12 @@
       </section>
 
       <section class="section" id="repeat" aria-labelledby="repeat-title" data-lesson="7">
-        <div class="lesson-head"><span class="lesson-number">7</span><div><span class="section-tag">Lesson seven · repeat</span><h2 id="repeat-title">Save the boring parts once.</h2><p>When one scene works, turn it into a template. The goal is to spend your next session on the character—not rebuilding the lighting rig.</p></div><button class="complete-button" type="button" data-complete="7">Mark complete</button></div>
+        <div class="lesson-head"><span class="lesson-number">7</span><div><span class="section-tag">Lesson seven · repeat</span><h2 id="repeat-title">Save the boring parts once.</h2><p>When one scene works, turn it into a template. The next session can focus on the character—not rebuilding the lighting rig.</p></div><button class="complete-button" type="button" data-complete="7">Mark complete</button></div>
         <div class="grid-2">
           <article class="card"><h3>Keep in the template</h3><ul><li>Orthographic camera and a reliable framing reference</li><li>Sun + Area Light with sensible starting values</li><li>Eevee / Eevee Next render setup</li><li>AO and Freestyle defaults</li><li>Transparent film and PNG / RGBA output</li><li>Common material slots and a simple palette</li></ul></article>
           <article class="card"><h3>The short version next time</h3><ol class="step-list"><li><span>Open <code>vtt-stl-render-template.blend</code>.</span></li><li><span>Import the STL and check orientation.</span></li><li><span>Assign broad material zones.</span></li><li><span>Frame the orthographic camera.</span></li><li><span>Tune AO for the model's scale.</span></li><li><span>Render, save the transparent PNG, and make a smaller VTT copy.</span></li></ol></article>
         </div>
-        <div class="band mint"><strong>Template habit:</strong> save a new working file per character. Keep the template pristine; it is your known-good starting point.</div>
+        <div class="band mint"><strong>Template habit:</strong> save a new working file per character. Keep the template pristine; it is the known-good starting point.</div>
       </section>
 
       <section class="section" id="troubleshooting" aria-labelledby="troubleshooting-title">
@@ -345,15 +345,15 @@
         <p class="section-intro">Change one variable at a time. The fastest fix is usually the control that has the same visual job as the problem.</p>
         <div class="grid-2">
           <details open><summary>The color is not visible.</summary><div>Use Material Preview or Rendered View. Confirm the material was assigned to the selected faces—not only created in a slot.</div></details>
-          <details><summary>I added a material and the whole model changed color.</summary><div>This is normal for the first / base material. Treat it as the model's Primer material, then add new materials for selected face regions.</div></details>
+          <details><summary>Adding a material changed the whole model's color.</summary><div>This is normal for the first / base material. Treat it as the model's Primer material, then add new materials for selected face regions.</div></details>
           <details><summary>Linked Flat Faces selects almost nothing.</summary><div>Raise the angle / degrees setting, then use Circle Select to fill in the edges.</div></details>
           <details><summary>Linked Flat Faces selects too much.</summary><div>Lower the angle / degrees setting. Hide geometry or use Circle Select for cleanup.</div></details>
           <details><summary>Select Linked grabs the entire miniature.</summary><div>The STL is probably one fused island. Use Linked Flat Faces instead; Select Linked is only useful for truly separate islands.</div></details>
-          <details><summary>Dragging the Area Light resizes it.</summary><div>Select the light and use <span class="key">G</span> to move it. Use <span class="key">S</span> only when you intend to change its size.</div></details>
+          <details><summary>Dragging the Area Light resizes it.</summary><div>Select the light and use <span class="key">G</span> to move it. Use <span class="key">S</span> only when a size change is intended.</div></details>
           <details><summary>The lighting looks flat.</summary><div>Lower Sun strength, move the Area Light farther to one side, or reduce fill from the front.</div></details>
           <details><summary>AO is too subtle.</summary><div>Increase Distance, judge through the camera, and make sure the Sun is not washing out every recess.</div></details>
           <details><summary>AO makes the model muddy.</summary><div>Lower Distance. AO is an accent, not the main source of shading.</div></details>
-          <details><summary>Freestyle looks too cartoonish.</summary><div>Start with thickness 1 and only Silhouette / Contour. Add more line types only when you can name the problem they solve.</div></details>
+          <details><summary>Freestyle looks too cartoonish.</summary><div>Start with thickness 1 and only Silhouette / Contour. Add more line types only when the problem they solve is clear.</div></details>
           <details><summary>The background is not transparent.</summary><div>Enable Film → Transparent and export PNG with RGBA. Verify the checkerboard appears in the render result.</div></details>
           <details><summary>Blender freezes after subdividing.</summary><div>Try <span class="key">Ctrl + Z</span> or recover from the autosave. Next time, subdivide a small selection with 1–4 cuts.</div></details>
         </div>
@@ -361,15 +361,15 @@
 
       <section class="section" id="notes" aria-labelledby="notes-title">
         <span class="section-tag">Keep experimenting</span>
-        <h2 id="notes-title">Your field notebook starts here.</h2>
-        <p class="section-intro">The best settings are the ones you can explain in the context of your model, camera, and intended token size. Record experiments instead of treating a single number as law.</p>
+        <h2 id="notes-title">Field notebook</h2>
+        <p class="section-intro">The best settings are those that make sense in the context of the model, camera, and intended token size. Record experiments instead of treating a single number as law.</p>
         <div class="grid-3">
           <article class="card"><h3>Known good</h3><ul><li>Freestyle thickness 1 is a strong starting point.</li><li>Sun + Area Light is simple and reliable.</li><li>AO should be judged through the final camera.</li><li>Linked Flat Faces + Circle Select is the core selection combo.</li></ul></article>
           <article class="card"><h3>Worth testing</h3><ul><li>Warm vs. cool key light</li><li>Flat-color materials vs. slightly varied roughness</li><li>Silhouette-only linework for very small tokens</li><li>Different orthographic crops for portrait and token use</li></ul></article>
           <article class="card"><h3>Write down</h3><ul><li>Blender version and render engine</li><li>Model scale or imported dimensions</li><li>AO distance that helped</li><li>Output size and where the render was used</li></ul></article>
         </div>
         <div class="band blue"><strong>Version note:</strong> Blender moves panels and renames render features over time. If a menu path differs, search the relevant Properties editor for the feature name—Ambient Occlusion, Freestyle, Transparent, or Orthographic—then record the path in <a href="notes.md">notes.md</a>.</div>
-        <div class="band mint"><strong>Ready for optional upgrades?</strong> Keep this basic flow intact and explore the separate <a href="docs/advanced/index.html">Advanced Techniques library</a> when you want smarter materials, complex lighting, backgrounds, kitbashing, compositing, or reusable templates.</div>
+        <div class="band mint"><strong>Optional upgrades:</strong> Keep this basic flow intact and explore the separate <a href="docs/advanced/index.html">Advanced Techniques library</a> for smarter materials, complex lighting, backgrounds, kitbashing, compositing, or reusable templates.</div>
       </section>
 
       <section class="section" id="reference" aria-labelledby="reference-title">
@@ -388,7 +388,7 @@
             <li><label><input type="checkbox"><span>Do a restrained crop, contrast, and separation pass.</span></label></li>
           </ol>
         </div>
-        <div class="footer"><p><strong>STL → VTT Art Lab</strong> is a living tutorial. The source workflow came from learning by doing: keep the successful defaults, question the confusing parts, and add screenshots when a panel path is hard to find.</p><p><a href="README.md">Project README</a> · <a href="notes.md">Ongoing notes</a> · <a href="reference/material-recipes.html">Material recipes</a> · <a href="contribute.html">Contribute</a> · <a href="https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT">View on GitHub</a></p><p class="feedback">Found an outdated Blender step? <a href="https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT/issues">Open an issue on GitHub</a>.</p></div>
+        <div class="footer"><p><strong>STL → VTT Art Lab</strong> is a living tutorial. The workflow is built around practical experimentation: keep successful defaults, question confusing parts, and add screenshots when a panel path is hard to find.</p><p><a href="README.md">Project README</a> · <a href="notes.md">Ongoing notes</a> · <a href="reference/material-recipes.html">Material recipes</a> · <a href="contribute.html">Contribute</a> · <a href="https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT">View on GitHub</a></p><p class="feedback">Found an outdated Blender step? <a href="https://github.com/jeremyglebe/Blender-Tutorial-Painting-STL-for-VTT/issues">Open an issue on GitHub</a>.</p></div>
       </section>
     </main>
   </div>

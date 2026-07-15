@@ -1,6 +1,6 @@
 # Contributing to STL → VTT Art Lab
 
-Thank you for helping keep this practical Blender guide useful. Blender changes often, and a short correction can save another beginner a lot of searching.
+Contributions help keep this practical Blender guide useful. Blender changes often, and a short correction can save another beginner a lot of searching.
 
 ## Project philosophy
 
@@ -47,4 +47,4 @@ Use the focused [issue forms](https://github.com/jeremyglebe/Blender-Tutorial-Pa
 4. Include the Blender version used for any UI or material change.
 5. Open the pull request and complete the provided checklist.
 
-The pull request template will ask you to confirm that basic documentation remains simple, advanced content stays separated, steps are practical, and external tools remain optional.
+The pull request template asks contributors to confirm that basic documentation remains simple, advanced content stays separated, steps are practical, and external tools remain optional.
