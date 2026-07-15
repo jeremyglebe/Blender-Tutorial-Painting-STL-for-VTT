@@ -67,6 +67,13 @@ p { margin: .7rem 0; }
 .step-list li { counter-increment: step; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; }
 .step-list li::before { content: counter(step); display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--coral); color: white; font-size: .8rem; font-weight: 850; }
 .key, code { padding: .1rem .32rem; border-radius: 5px; background: var(--ink); color: var(--gold-soft); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .84em; }
+.color-chip { position: relative; display: inline-flex; align-items: center; gap: .4rem; margin: .12rem .25rem .12rem 0; padding: .25rem .5rem .25rem .35rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); cursor: pointer; font: inherit; font-size: .78rem; font-weight: 750; white-space: nowrap; }
+.color-chip::before { content: ""; width: 1rem; height: 1rem; flex: 0 0 1rem; border: 1px solid rgba(32,35,33,.28); border-radius: 50%; background: var(--chip); }
+.color-chip::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + .55rem); z-index: 2; transform: translateX(-50%) translateY(.2rem); padding: .35rem .5rem; border-radius: 6px; background: var(--ink); color: var(--gold-soft); font: 700 .75rem ui-monospace, SFMono-Regular, Consolas, monospace; opacity: 0; pointer-events: none; transition: opacity .14s ease, transform .14s ease; }
+.color-chip:hover::after, .color-chip:focus-visible::after, .color-chip.copied::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.color-chip.copied::after { content: "Copied " attr(data-hex); }
+.color-chip:hover, .color-chip:focus-visible { border-color: var(--coral); background: var(--paper); }
+.recipe-colors { display: flex; flex-wrap: wrap; align-items: center; gap: .15rem; }
 table { width: 100%; margin: 1rem 0; border-collapse: collapse; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: .88rem; }
 th, td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { background: var(--deep); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
